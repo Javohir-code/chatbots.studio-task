@@ -40,17 +40,28 @@ const getDogImages = async (
   next: NextFunction
 ) => {
   try {
-    const count = await UrlPhoto.countDocuments();
     const images = await UrlPhoto.find({});
     const result = [];
-    images.forEach((image) => {
-      result.push(_.pick(image, ['_id', 'url']));
+    const queryData = req.query.search;
+    images.forEach((date) => {
+      const dateObj = date.createdAt;
+
+      let month: any = dateObj.getUTCMonth() + 1;
+      let day: any = dateObj.getUTCDate();
+      const year: any = dateObj.getUTCFullYear();
+      day = day < 10 ? `0${day}` : day;
+      month = month < 10 ? `0${month}` : month;
+      const newdate = `${day}.${month}.${year}`;
+      console.log(newdate);
+      if (newdate === queryData) {
+        result.push(_.pick(date, ['_id', 'url', 'createdAt']));
+      }
     });
-    return res.status(200).json({ count: count, images: result });
+    res.status(200).json({ count: result.length, images: result });
+    return;
   } catch (error) {
-    return res
-      .status(400)
-      .send('Error occured while sending information from DB');
+    res.status(400).send('Error occured while sending information from DB');
+    return;
   }
 };
 
