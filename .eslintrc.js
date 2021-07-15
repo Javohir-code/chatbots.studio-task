@@ -11,7 +11,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
   ],
-  parser: '@typescript-eslint/parser',
+  // parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
@@ -20,10 +20,15 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     'no-console': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'func-names': 'off',
     'object-shorthand': 'off',
     'class-methods-use-this': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'no-else-return': 'off',
+    'no-param-reassign': 'off',
+    'no-useless-return': 'off',
+    'import/prefer-default-export': 'off',
   },
 };
