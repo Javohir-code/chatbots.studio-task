@@ -30,5 +30,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-useless-return': 'off',
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
 };
